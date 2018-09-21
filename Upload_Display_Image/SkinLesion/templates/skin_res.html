@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesion Results</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="/static/img/favicon.png" rel="icon">
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="/static/lib/nivo-slider/css/nivo-slider.css" rel="stylesheet">
+  <link href="/static/lib/owlcarousel/owl.carousel.css" rel="stylesheet">
+  <link href="/static/lib/owlcarousel/owl.transitions.css" rel="stylesheet">
+  <link href="/static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/static/lib/venobox/venobox.css" rel="stylesheet">
+
+  <!-- Nivo Slider Theme -->
+  <link href="/static/css/nivo-slider-theme.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="/static/css/style.css" rel="stylesheet">
+
+  <!-- Responsive Stylesheet File -->
+  <link href="static/css/responsive.css" rel="stylesheet">
+
+  <style>
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 25%;
+    left: 150%;
+    /*margin-left: -80px; */
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    right: 100%;
+    margin-right: -15px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+
+</head>
+<body>
+  <!-- Start portfolio Area -->
+  <div id="portfolio" class="portfolio-area area-padding fix">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>Results</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Start Portfolio -page -->
+        <!-- <div class="awesome-project-1 fix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="awesome-menu ">
+              <ul class="project-menu">
+                 <li>
+                  <a href="#" class="active" data-filter="*">All</a>
+                </li> 
+                {% for name,class in classes %}
+                     {% if class == "Original" %}
+                         <li>
+                               <a href="#" class="active" data-filter="{{ name }}">{{ class }}</a>
+                         </li>
+		     {% else %}                
+                         <li>
+                                <a href="#" data-filter="{{ name }}">{{ class }}</a>
+                         </li>
+                     {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        <div class="awesome-project-content">
+        {% for (name,top_pred,predicitons) in attributes %}
+          <!-- single-awesome-project start -->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="single-awesome-project">
+              <div class="awesome-img">
+                <a href="#"><img src="{{ name }}" alt="" /></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <p>
+                  <h5> <b> Lesions Detected: </b> </h5>
+			<h6> &nbsp; &nbsp; <i> {{ top_pred[0] }} </i></h6>
+			<!-- {% for name in top_pred[1:] %} 
+			 <h6>  <i> {{ name }},  </i></h6>
+			{% endfor %} -->
+              <p>
+              <p>          
+		 <h5> <b> Model Predictions: </b> </h6>
+		     <ol type="square">
+                 {% for name,prob in predicitons %}
+                          <li> 
+				<i> {{ name }} </i> 
+				<div class="popup" onclick= "{{ name_map[name] }}_func()"> &#9432; 
+					<span class="popuptext" id= "{{ name_map[name] }}_popup">{{ text_map[name] }}</span>
+				</div>
+				</li>
+                 {% endfor %}
+		     </ol>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+          
+          <!-- single-awesome-project end -->
+        </div>
+      </div>
+     
+    </div>
+  </div>
+  <!-- awesome-portfolio end -->
+  <script src="/static/lib/jquery/jquery.min.js"></script>
+  <script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="/static/lib/venobox/venobox.min.js"></script>
+  <script src="/static/lib/knob/jquery.knob.js"></script>
+  <script src="/static/lib/wow/wow.min.js"></script>
+  <script src="/static/lib/parallax/parallax.js"></script>
+  <script src="/static/lib/easing/easing.min.js"></script>
+  <script src="/static/lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+  <script src="/static/lib/appear/jquery.appear.js"></script>
+  <script src="/static/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script>
+	// When the user clicks on div, open the popup
+	function mmel_func() {
+    		var popup = document.getElementById("mmel_popup");
+    		popup.classList.toggle("show");
+	}
+	function bcc_func() {
+    		var popup = document.getElementById("bcc_popup");
+    		popup.classList.toggle("show");
+	}
+	function scc_func() {
+    		var popup = document.getElementById("scc_popup");
+    		popup.classList.toggle("show");
+	}
+	function iec_func() {
+    		var popup = document.getElementById("iec_popup");
+    		popup.classList.toggle("show");
+	}
+	function pg_func() {
+    		var popup = document.getElementById("pg_popup");
+    		popup.classList.toggle("show");
+	}
+	function sk_func() {
+    		var popup = document.getElementById("sk_popup");
+    		popup.classList.toggle("show");
+	}
+	function mn_func() {
+    		var popup = document.getElementById("mn_popup");
+    		popup.classList.toggle("show");
+	}
+	function ak_func() {
+    		var popup = document.getElementById("ak_popup");
+    		popup.classList.toggle("show");
+	}
+	function df_func() {
+    		var popup = document.getElementById("df_popup");
+    		popup.classList.toggle("show");
+	}
+	function hg_func() {
+    		var popup = document.getElementById("hg_popup");
+    		popup.classList.toggle("show");
+	}
+	function wart_func() {
+    		var popup = document.getElementById("wart_popup");
+    		popup.classList.toggle("show");
+	}
+	function lentigo_func() {
+    		var popup = document.getElementById("lentigo_popup");
+    		popup.classList.toggle("show");
+	}
+    
+  </script>
+
+</body>
+</html>  
+  

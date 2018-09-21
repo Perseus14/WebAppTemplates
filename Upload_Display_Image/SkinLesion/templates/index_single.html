@@ -1,0 +1,74 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="static/css/style_index.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+              <h4 align="center"> Skin Lesion Detection </h4>
+		<!--<nav>
+		<div class="nav-wrapper">
+		  <a href="#" class="brand-logo center"><img src="static/images/brand.jpg" alt="Logo"></a>
+		</div>
+		</nav>-->
+
+	<main role="main" class="MainContent flex-container">
+    <div class="section container">
+  <div class="row">
+    <div class="col s12 m6 offset-m3">
+      <div class="card login-wrapper">
+        <div class="card-content">
+
+          <form action="/upload" method="POST"  enctype=multipart/form-data> 
+            <h4 class="f_head center">Upload Skin Lesion Image</h4>
+			<div class="row">
+				<div class="file-field input-field">
+				    <div class="btn">
+					<span>Choose File</span>
+					<input type="file" name="image" accept="image/jpeg, image/jpg, image/png">
+				    </div>
+				  <div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				  </div>
+				</div>
+			</div>
+			<div>
+				<p class="center-align">
+				<button class="btn waves-effect waves-light btn-large" type = "submit">
+						Submit
+				<!--	<div class="material-icons right">Submit</div> -->
+				</button>
+				</p>
+			</div>
+			
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </main>
+	
+	
+	
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="static/js/materialize.min.js"></script>
+	  <Script>
+		  $(document).ready(function() {
+			$('select').material_select();
+		  });
+	  </script>
+	  
+    </body>
+  </html>
+        
